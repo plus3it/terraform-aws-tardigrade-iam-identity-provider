@@ -1,5 +1,6 @@
 variable "create_saml_provider" {
   description = "Controls whether to create the SAML Identity Provider"
+  type        = bool
   default     = true
 }
 
@@ -14,4 +15,3 @@ variable "saml_provider_metadata" {
   default     = ""
   type        = string
 }
-
