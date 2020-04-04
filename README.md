@@ -4,6 +4,12 @@ Terraform module to create an IAM SAML provider
 
 
 <!-- BEGIN TFDOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+
 ## Providers
 
 | Name | Version |
@@ -13,7 +19,7 @@ Terraform module to create an IAM SAML provider
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | create\_saml\_provider | Controls whether to create the SAML Identity Provider | `bool` | `true` | no |
 | saml\_provider\_metadata | XML metadata for the SAML Identity Provider | `string` | `""` | no |
 | saml\_provider\_name | Name of the SAML Identity Provider | `string` | `""` | no |
