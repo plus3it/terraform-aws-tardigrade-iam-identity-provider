@@ -1,6 +1,5 @@
 variable "saml_provider_name" {
   description = "Name of the SAML Identity Provider"
-  default     = ""
   type        = string
 }
 
