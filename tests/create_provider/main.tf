@@ -32,7 +32,6 @@ module "create_provider" {
     aws = aws
   }
 
-  create_saml_provider   = true
   saml_provider_name     = "tardigrade-provider-${random_string.this.result}"
   saml_provider_metadata = file("${path.module}/template/metadata.xml")
 }
