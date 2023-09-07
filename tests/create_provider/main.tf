@@ -8,7 +8,7 @@ resource "random_string" "entity_id" {
 
 resource "random_string" "this" {
   length  = 6
-  number  = false
+  numeric = false
   special = false
   upper   = false
 }
@@ -24,9 +24,6 @@ data "template_file" "this" {
 
 module "create_provider" {
   source = "../../"
-  providers = {
-    aws = aws
-  }
 
   saml_provider_name     = "tardigrade-provider-${random_string.this.result}"
   saml_provider_metadata = file("${path.module}/template/metadata.xml")
