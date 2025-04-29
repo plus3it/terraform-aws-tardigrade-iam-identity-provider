@@ -14,14 +14,14 @@ variable "saml_provider_metadata" {
   type        = string
 }
 
-variable "identity_provider" {
+variable "openid_connect" {
   description = "Provides an IAM OpenID Connect Provider"
-  type        = object({
-    url = string
-    client_id_list = list(string)
+  type = object({
+    url             = string
+    client_id_list  = list(string)
     thumbprint_list = optional(string)
   })
-  default     = "disable"
+  default = "disable"
   validation {
     condition     = contains(["enable", "disable"], var.identity_provider)
     error_message = "`identity_provider` must be one of: \"enable\", \"disable\"."

@@ -4,6 +4,6 @@ resource "aws_iam_saml_provider" "this" {
 }
 
 resource "aws_iam_openid_connect_provider" "this" {
-  url            = var.identity_provider.url
-  client_id_list = var.identity_provider.client_id_list
+  url            = var.openid_connect.url
+  client_id_list = var.openid_connect.client_id_list
 }
