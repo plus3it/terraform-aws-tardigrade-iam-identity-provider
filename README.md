@@ -1,6 +1,6 @@
 # terraform-aws-tardigrade-iam-identity-provider
 
-Terraform module to create an IAM SAML provider
+Terraform module to create an IAM SAML provider, OIDC Connect provider, or both.
 
 ## Testing
 
