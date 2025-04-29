@@ -1,6 +1,6 @@
 # terraform-aws-tardigrade-iam-identity-provider
 
-Terraform module to create an IAM SAML provider, OpenID Connect provider, or both.
+Terraform module to create an IAM SAML provider, OpenID Connect provider, or both. Use the ```create_openid_connect``` and or ```create_saml``` Inputs for selection.
 
 ## Testing
 
@@ -42,9 +42,7 @@ make mockstack/clean
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_openid_connect"></a> [openid\_connect](#input\_openid\_connect) | Provides an IAM OpenID Connect Provider | <pre>object({<br/>    url             = string<br/>    client_id_list  = list(string)<br/>    thumbprint_list = optional(string)<br/>  })</pre> | `"disable"` | no |
-| <a name="input_saml_provider_metadata"></a> [saml\_provider\_metadata](#input\_saml\_provider\_metadata) | XML metadata for the SAML Identity Provider | `string` | `""` | no |
-| <a name="input_saml_provider_name"></a> [saml\_provider\_name](#input\_saml\_provider\_name) | Name of the SAML Identity Provider | `string` | `"disabled"` | no |
+| <a name="input_iam_identity_provider"></a> [iam\_identity\_provider](#input\_iam\_identity\_provider) | Inputs to create a SAML Provider or OpenID Provider | <pre>object({<br/>    saml = optional(object({<br/>      metadata_document = string<br/>      provider_name     = string<br/>    }))<br/>    openid = optional(object({<br/>      client_id_list  = list(string)<br/>      thumbprint_list = optional(string)<br/>      url             = string<br/>    }))<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
@@ -52,5 +50,6 @@ make mockstack/clean
 |------|-------------|
 | <a name="output_openid_identity_provider_arn"></a> [openid\_identity\_provider\_arn](#output\_openid\_identity\_provider\_arn) | ARN of the OpenID Connect Identity Provider |
 | <a name="output_saml_identity_provider_arn"></a> [saml\_identity\_provider\_arn](#output\_saml\_identity\_provider\_arn) | ARN of the SAML Identity Provider |
+| <a name="output_saml_identity_provider_valid_until"></a> [saml\_identity\_provider\_valid\_until](#output\_saml\_identity\_provider\_valid\_until) | The expiration date and time for the SAML provider in RFC1123 format |
 
 <!-- END TFDOCS -->

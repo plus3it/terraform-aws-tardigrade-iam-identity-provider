@@ -22,9 +22,24 @@ data "template_file" "this" {
   }
 }
 
-module "create_provider" {
+module "create_openid" {
+  source = "../.."
+
+  iam_identity_provider = {
+    openid = {
+      client_id_list = ["266362248691-342342xasdasdasda-apps.googleusercontent.com"]
+      url            = "https://accounts.google.com"
+    }
+  }
+}
+
+module "create_saml" {
   source = "../../"
 
-  saml_provider_name     = "tardigrade-provider-${random_string.this.result}"
-  saml_provider_metadata = file("${path.module}/template/metadata.xml")
+  iam_identity_provider = {
+    saml = {
+      metadata_document = file("${path.module}/template/metadata.xml")
+      provider_name     = "tardigrade-provider-${random_string.this.result}"
+    }
+  }
 }
