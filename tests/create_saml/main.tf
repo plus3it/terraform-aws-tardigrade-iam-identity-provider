@@ -14,7 +14,7 @@ resource "random_string" "this" {
 }
 
 data "template_file" "this" {
-  template = file("${path.module}/template/metadata.xml")
+  template = file("../fixtures/metadata.xml")
 
   vars = {
     entity_id = random_string.entity_id.result
@@ -27,7 +27,7 @@ module "create_saml" {
 
   iam_identity_provider = {
     saml = {
-      metadata_document = file("${path.module}/template/metadata.xml")
+      metadata_document = file("${path.module}/.fixtures/metadata.xml")
       provider_name     = "tardigrade-provider-${random_string.this.result}"
     }
   }

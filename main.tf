@@ -6,8 +6,9 @@ resource "aws_iam_saml_provider" "this" {
 }
 
 resource "aws_iam_openid_connect_provider" "this" {
-  count = var.iam_identity_provider.openid != null ? 1 : 0
+  count = var.iam_identity_provider.openid_connect != null ? 1 : 0
 
-  client_id_list = var.iam_identity_provider.openid.client_id_list
-  url            = var.iam_identity_provider.openid.url
+  client_id_list  = var.iam_identity_provider.openid_connect.client_id_list
+  thumbprint_list = var.iam_identity_provider.openid_connect.thumbprint_list
+  url             = var.iam_identity_provider.openid_connect.url
 }

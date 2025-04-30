@@ -1,8 +1,8 @@
-module "create_openid" {
+module "create_openid_connect" {
   source = "../.."
 
   iam_identity_provider = {
-    openid = {
+    openid_connect = {
       client_id_list = ["266362248691-342342xasdasdasda-apps.googleusercontent.com"]
       url            = "https://accounts.google.com"
     }
