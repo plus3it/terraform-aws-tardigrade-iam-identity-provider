@@ -1,6 +1,6 @@
 # terraform-aws-tardigrade-iam-identity-provider
 
-Terraform module to create an IAM SAML provider, OpenID Connect provider, or both. Use the `saml` and or `openid_connect` Inputs for selection.
+Terraform module to create an IAM SAML provider or an OpenID Connect provider.
 
 ## Testing
 
@@ -42,7 +42,7 @@ make mockstack/clean
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_iam_identity_provider"></a> [iam\_identity\_provider](#input\_iam\_identity\_provider) | Inputs to create a SAML Provider or OpenID Provider | <pre>object({<br/>    saml = optional(object({<br/>      metadata_document = string<br/>      provider_name     = string<br/>    }))<br/>    openid_connect = optional(object({<br/>      client_id_list  = list(string)<br/>      thumbprint_list = optional(list(string), [])<br/>      url             = string<br/>    }))<br/>  })</pre> | n/a | yes |
+| <a name="input_iam_identity_provider"></a> [iam\_identity\_provider](#input\_iam\_identity\_provider) | Inputs to create a SAML Provider or OpenID Provider | <pre>object({<br/>    saml = optional(object({<br/>      metadata_document = string<br/>      provider_name     = string<br/>      tags              = optional(map(string))<br/>    }))<br/>    oidc = optional(object({<br/>      client_id_list  = list(string)<br/>      tags            = optional(map(string))<br/>      thumbprint_list = optional(list(string))<br/>      url             = string<br/>    }))<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 

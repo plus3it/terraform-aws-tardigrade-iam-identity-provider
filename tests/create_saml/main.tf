@@ -27,7 +27,7 @@ module "create_saml" {
 
   iam_identity_provider = {
     saml = {
-      metadata_document = file("${path.module}/.fixtures/metadata.xml")
+      metadata_document = file("../fixtures/metadata.xml")
       provider_name     = "tardigrade-provider-${random_string.this.result}"
     }
   }

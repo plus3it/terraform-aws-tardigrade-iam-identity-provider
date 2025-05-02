@@ -4,18 +4,20 @@ variable "iam_identity_provider" {
     saml = optional(object({
       metadata_document = string
       provider_name     = string
+      tags              = optional(map(string))
     }))
-    openid_connect = optional(object({
+    oidc = optional(object({
       client_id_list  = list(string)
-      thumbprint_list = optional(list(string), [])
+      tags            = optional(map(string))
+      thumbprint_list = optional(list(string))
       url             = string
     }))
   })
   validation {
-    condition = (
-      (var.iam_identity_provider.saml != null && var.iam_identity_provider.openid_connect == null) ||
-      (var.iam_identity_provider.saml == null && var.iam_identity_provider.openid_connect != null)
-    )
-    error_message = "You must specify *either* 'saml' or 'openid_connect', but not both or neither."
+    condition = anytrue([
+      var.iam_identity_provider.saml != null && var.iam_identity_provider.oidc == null,
+      var.iam_identity_provider.saml == null && var.iam_identity_provider.oidc != null,
+    ])
+    error_message = "You must specify *either* 'saml' or 'oidc', but not both or neither."
   }
 }

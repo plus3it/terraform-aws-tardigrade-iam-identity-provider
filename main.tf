@@ -3,12 +3,14 @@ resource "aws_iam_saml_provider" "this" {
 
   name                   = var.iam_identity_provider.saml.provider_name
   saml_metadata_document = var.iam_identity_provider.saml.metadata_document
+  tags                   = var.iam_identity_provider.saml.tags
 }
 
 resource "aws_iam_openid_connect_provider" "this" {
-  count = var.iam_identity_provider.openid_connect != null ? 1 : 0
+  count = var.iam_identity_provider.oidc != null ? 1 : 0
 
-  client_id_list  = var.iam_identity_provider.openid_connect.client_id_list
-  thumbprint_list = var.iam_identity_provider.openid_connect.thumbprint_list
-  url             = var.iam_identity_provider.openid_connect.url
+  client_id_list  = var.iam_identity_provider.oidc.client_id_list
+  tags            = var.iam_identity_provider.oidc.tags
+  thumbprint_list = var.iam_identity_provider.oidc.thumbprint_list
+  url             = var.iam_identity_provider.oidc.url
 }
