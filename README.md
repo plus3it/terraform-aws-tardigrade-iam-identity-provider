@@ -1,6 +1,6 @@
 # terraform-aws-tardigrade-iam-identity-provider
 
-Terraform module to create an IAM SAML provider
+Terraform module to create an IAM SAML provider or an OpenID Connect provider.
 
 ## Testing
 
@@ -42,13 +42,14 @@ make mockstack/clean
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_saml_provider_name"></a> [saml\_provider\_name](#input\_saml\_provider\_name) | Name of the SAML Identity Provider | `string` | n/a | yes |
-| <a name="input_saml_provider_metadata"></a> [saml\_provider\_metadata](#input\_saml\_provider\_metadata) | XML metadata for the SAML Identity Provider | `string` | `""` | no |
+| <a name="input_iam_identity_provider"></a> [iam\_identity\_provider](#input\_iam\_identity\_provider) | Inputs to create a SAML Provider or OpenID Provider | <pre>object({<br/>    saml = optional(object({<br/>      metadata_document = string<br/>      provider_name     = string<br/>      tags              = optional(map(string))<br/>    }))<br/>    oidc = optional(object({<br/>      client_id_list  = list(string)<br/>      tags            = optional(map(string))<br/>      thumbprint_list = optional(list(string))<br/>      url             = string<br/>    }))<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_openid_identity_provider_arn"></a> [openid\_identity\_provider\_arn](#output\_openid\_identity\_provider\_arn) | ARN of the OpenID Connect Identity Provider |
 | <a name="output_saml_identity_provider_arn"></a> [saml\_identity\_provider\_arn](#output\_saml\_identity\_provider\_arn) | ARN of the SAML Identity Provider |
+| <a name="output_saml_identity_provider_valid_until"></a> [saml\_identity\_provider\_valid\_until](#output\_saml\_identity\_provider\_valid\_until) | The expiration date and time for the SAML provider in RFC1123 format |
 
 <!-- END TFDOCS -->
