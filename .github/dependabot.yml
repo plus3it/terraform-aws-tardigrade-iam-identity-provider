@@ -11,7 +11,17 @@ updates:
       interval: daily
     open-pull-requests-limit: 10
   - package-ecosystem: terraform
-    directory: "/tests/create_provider"
+    directory: "/tests/create_all"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: terraform
+    directory: "/tests/create_openid"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: terraform
+    directory: "/tests/create_saml"
     schedule:
       interval: daily
     open-pull-requests-limit: 10
